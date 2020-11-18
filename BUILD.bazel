@@ -1,0 +1,42 @@
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+load(
+    "@npm//google-closure-compiler:index.bzl",
+    "google_closure_compiler",
+)
+
+
+google_closure_compiler(
+    name = "example-bundle",
+    outs = ["example-bundle.js"],
+    args = [
+        "--platform=native",
+        "--isolation_mode=IIFE",
+        "--compilation_level=ADVANCED",
+        "--dependency_mode=PRUNE_LEGACY",
+        "--process_common_js_modules=true",
+        "--module_resolution=NODE",
+        "--env=BROWSER",
+        "--language_in=STABLE",
+        "--language_out=STABLE",
+        "--use_types_for_optimization=true",
+        "--js=node_modules/lit-element/package.json",
+        "--js=node_modules/lit-element/lit-element.js",
+        "--js=node_modules/lit-element/lib/*.js",
+        "--js=node_modules/lit-html/package.json",
+        "--js=node_modules/lit-html/lit-html.js",
+        "--js=node_modules/lit-html/lib/*.js",
+        "--js=$(execpath example-element.js)",
+        "--entry_point=$(execpath example-element.js)",
+        "--js_output_file=$@",
+        "--debug",
+    ],
+    data = [
+        "example-element.js",
+        "@npm//lit-element:lit-element",
+    ],
+)
+
