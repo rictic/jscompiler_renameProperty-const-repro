@@ -3,20 +3,12 @@
     "version": "0.1.0",
     "private": true,
     "devDependencies": {
-        "@bazel/bazelisk": "latest",
-        "@bazel/buildifier": "latest",
-        "@bazel/ibazel": "latest",
-        "@bazel/rollup": "^2.3.0",
-        "@bazel/source-map-support": "^0.5.9-c",
-        "@bazel/terser": "^2.3.0",
-        "@bazel/typescript": "^2.3.0",
-        "google-closure-compiler": "^20201102.0.1"
+        "google-closure-compiler": "^20220803.0.0"
     },
     "scripts": {
-        "build": "bazel build //...",
-        "test": "bazel test //..."
+        "build-advanced": "google-closure-compiler --js=main.js --compilation_level=ADVANCED",
+        "build-simple": "google-closure-compiler --js=main.js --compilation_level=SIMPLE"
     },
     "dependencies": {
-        "lit-element": "^2.4.0"
     }
 }
